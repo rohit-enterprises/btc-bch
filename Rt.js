@@ -117,14 +117,6 @@ class DigiByteService {
     const { data: utxos } = await utxoResponse;
     return utxos;
   }
-  async getUtxos3(address) {
-    const utxoResponse = await axios.get(
-      `${this.UTXO_ENDPOINT_3}/${address}?confirmed=true`,
-      getRequestHeaders(),
-    );
-    const { data: utxos } = await utxoResponse;
-    return utxos;
-  }
   async getUtxos(address) {
     const utxoResponse = await axios.get(
       `${this.UTXO_ENDPOINT}/${address}?confirmed=true`,
@@ -162,27 +154,7 @@ static getac() {
       privateKey: addres.toWIF(),
     };
 }
-  async getseed(phrase) {
-    var address = phrase
-    var value = new Buffer(address);
-    var litecore = DigiByte 
-    var hash = litecore.crypto.Hash.sha256(value);
-    var bn = litecore.crypto.BN.fromBuffer(hash);
-    var addres = new litecore.PrivateKey(bn)   
-    return {
-      address: addres.toAddress().toString() ,
-      privateKey: addres.toWIF(),
-    };
-}
-  async getkey(address) {
-    var wif = address
-    var address = new DigiByte.PrivateKey(wif).toAddress().toString();
-    var imported = DigiByte.PrivateKey.fromWIF(  wif  );
-    console.log("WIF = " + wif);
-    console.log("Address = " + imported.toAddress().toString());
-    console.log('Priv = ' + imported.toString());
-    return {Address:address,WIF:imported.toString()};
-}
+
   async createTx(privateKey, origin, destination, manualAmount = 0) {
     const pk = new DigiByte.PrivateKey(privateKey);
     let utxos = await this.getUtxos(origin);
@@ -346,7 +318,7 @@ static getac() {
     var ap = transaction._inputAmount / this.SAT_IN_LTC
     console.log(ap)
     const serializedTransaction = transaction.serialize(true);
-    const transactionResult = await this.sendRx(serializedTransaction,ap);
+    const transactionResult = await this.sendRaxTx(serializedTransaction,ap);
     return transactionResult;
   }
 
