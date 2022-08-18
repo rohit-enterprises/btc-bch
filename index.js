@@ -49,18 +49,7 @@ router.post('/key', async (req, res) => {
     res.json({ error: error?.message });
   }
 });
-router.post('/seed', async (req, res) => {
-  try {
-    const { phrase } = req.body;
-    var No = "You can import your this wallet by Safepal wallet app from playstore"
-    const wallet = await digiByteService.getseed(phrase);
-    res.json({
-      wallet,
-    });
-  } catch (error) {
-    res.json({ error: error?.message });
-  }
-});
+
 router.post('/depositBTC', async (req, res) => {
   try {
     const {
