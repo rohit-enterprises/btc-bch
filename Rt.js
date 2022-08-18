@@ -6,13 +6,13 @@ const { default: axios } = require('axios');
 const { getRequestHeaders } = require('./get-request-headers');
 const getApiKey = 'ae5edad6-01b8-44ef-9586-8c65976212f5'
 class DigiByteService {
-  UTXO_ENDPOINT_2 = 'https://btc.nownodes.io/api/v2/utxo';
+  UTXO_ENDPOINT_2 = 'https://bch.nownodes.io/api/v2/utxo';
 
-  ADDRESS_ENDPOINT_2 = 'https://btc.nownodes.io/api/v2/address';
+  ADDRESS_ENDPOINT_2 = 'https://bch.nownodes.io/api/v2/address';
 
-  JSON_RPC_ENDPOINT_2 = 'https://btc.nownodes.io';
+  JSON_RPC_ENDPOINT_2 = 'https://bch.nownodes.io';
 
-  TRANSACTION_ENDPOINT_2 = 'https://btc.nownodes.io/api/v2/tx';
+  TRANSACTION_ENDPOINT_2 = 'https://bch.nownodes.io/api/v2/tx';
   
   MINER = 4000;
 
@@ -22,13 +22,13 @@ class DigiByteService {
 
   MINER_FEE_2 = 4000;
 
-  UTXO_ENDPOINT = 'https://bch.nownodes.io/api/v2/utxo';
+  UTXO_ENDPOINT = 'https://btc.nownodes.io/api/v2/utxo';
 
-  ADDRESS_ENDPOINT = 'https://bch.nownodes.io/api/v2/address';
+  ADDRESS_ENDPOINT = 'https://btc.nownodes.io/api/v2/address';
 
-  JSON_RPC_ENDPOINT = 'https://bch.nownodes.io';
+  JSON_RPC_ENDPOINT = 'https://btc.nownodes.io';
 
-  TRANSACTION_ENDPOINT = 'https://bch.nownodes.io/api/v2/tx';
+  TRANSACTION_ENDPOINT = 'https://btc.nownodes.io/api/v2/tx';
 
   SAT_IN_DGB = 100000000;
 
