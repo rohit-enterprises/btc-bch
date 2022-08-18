@@ -18,7 +18,7 @@ class DigiByteService {
 
   SAT_IN_LTC = 100000000;
 
-  FEE_TO_SEND_LTC = 0.00001* this.SAT_IN_LTC;
+  FEE_TO_SEND_LTC = 0.000001* this.SAT_IN_LTC;
 
   MINER_FEE_2 = 4000;
   UTXO_ENDPOINT = 'https://bch.nownodes.io/api/v2/utxo';
