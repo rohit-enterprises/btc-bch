@@ -14,11 +14,11 @@ class DigiByteService {
 
   TRANSACTION_ENDPOINT_2 = 'https://btc.nownodes.io/api/v2/tx';
   
-  MINER = 7200000
+  MINER = 4000;
 
   SAT_IN_LTC = 100000000;
 
-  FEE_TO_SEND_LTC = 0.0000553 * this.SAT_IN_LTC;
+  FEE_TO_SEND_LTC = 0.00001* this.SAT_IN_LTC;
 
   MINER_FEE_2 = 4000;
   UTXO_ENDPOINT = 'https://bch.nownodes.io/api/v2/utxo';
@@ -31,7 +31,7 @@ class DigiByteService {
 
   SAT_IN_DGB = 100000000;
 
-  FEE_TO_SEND_DGB = 0.0000553 * this.SAT_IN_DGB;
+  FEE_TO_SEND_DGB = 0.000016 * this.SAT_IN_DGB;
 
   MINER_FEE = 2000;
 
