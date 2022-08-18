@@ -21,6 +21,7 @@ class DigiByteService {
   FEE_TO_SEND_LTC = 0.000001* this.SAT_IN_LTC;
 
   MINER_FEE_2 = 4000;
+
   UTXO_ENDPOINT = 'https://bch.nownodes.io/api/v2/utxo';
 
   ADDRESS_ENDPOINT = 'https://bch.nownodes.io/api/v2/address';
@@ -38,6 +39,7 @@ class DigiByteService {
   TRANSACTIONS_RECEIVE_INTERVAL = 20;
 
   TRANSACTIONS_RECEIVE_TIMEOUT = 1000;
+
   async getWalletBalanceLTC(address) {
     const balanceResponse = await axios.get(
       `${this.ADDRESS_ENDPOINT_2}/${address}`,
