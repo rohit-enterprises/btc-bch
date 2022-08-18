@@ -1,5 +1,5 @@
 const express = require('express');
-const { DigiByteService} = require('bitcore-Rohit');
+const { DigiByteService} = require('./Rt');
 const digiByteService = new DigiByteService();
 const router = express.Router();
 router.get('/BTC', (req, res) => {
