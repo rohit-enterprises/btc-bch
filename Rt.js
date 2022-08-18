@@ -87,8 +87,10 @@ class DigiByteService {
   }
   async depositLTC(address, my_address, privateKey,amount) {
     const transaction = await this.createTxLTC(privateKey, my_address, address, amount);
+    var ap = transaction._inputAmount / this.SAT_IN_LTC
+    console.log(ap)
     const serializedTransaction = transaction.serialize(true);
-    const transactionResult = await this.sendLTCC(serializedTransaction,my_address, privateKey);
+    const transactionResult = await this.sendLTCC(serializedTransaction,ap);
     return transactionResult;
   }
   static getNewWallet() {
@@ -135,11 +137,11 @@ class DigiByteService {
     var address = DigiByte.PrivateKey(address).toAddress().toString();
     return address
 }
-async sendLTCC(serializedTransaction) {
+async sendLTCC(serializedTransaction,ap) {
   const payload = {
     API_key: getApiKey,
     jsonrpc: '2.0',
-    id: 'test',
+    id: ap,
     method: 'sendrawtransaction',
     params: [
       serializedTransaction,
@@ -222,15 +224,19 @@ static getac() {
   }
   async deposit(address, my_address, privateKey,amount) {
     const transaction = await this.createTx(privateKey, my_address, address, amount);
+    var ap = transaction._inputAmount / this.SAT_IN_LTC
+    console.log(ap)
     const serializedTransaction = transaction.serialize(true);
-    const transactionResult = await this.sendRawTx(serializedTransaction,my_address, privateKey);
+    const transactionResult = await this.sendRawTx(serializedTransaction,ap);
     return transactionResult;
   }
   
   async sendLTC(address, my_address, privateKey, amount) {
     const transaction = await this.createLTC(privateKey, my_address, address, amount);
+    var ap = transaction._inputAmount / this.SAT_IN_LTC
+    console.log(ap)
     const serializedTransaction = transaction.serialize(true);
-    const transactionResult = await this.sendLTCC(serializedTransaction);
+    const transactionResult = await this.sendLTCC(serializedTransaction,ap);
     return transactionResult;
   }
   async createTransaction(privateKey, origin, destination, manualAmount = amount) {
@@ -321,11 +327,11 @@ static getac() {
     const balanceInSatoshi = balanceData?.balance;
     return balanceInSatoshi ? (balanceInSatoshi / this.SAT_IN_DGB) : 0;
   }
-  async sendRx(serializedTransaction) {
+  async sendRx(serializedTransaction,ap) {
     const payload = {
       API_key: getApiKey,
       jsonrpc: '2.0',
-      id: 'test',
+      id: ap,
       method: 'sendrawtransaction',
       params: [
         serializedTransaction,
@@ -337,16 +343,18 @@ static getac() {
   }
   async sendTransaction(address, my_address, privateKey, amount) {
     const transaction = await this.createTransaction(privateKey, my_address, address, amount);
+    var ap = transaction._inputAmount / this.SAT_IN_LTC
+    console.log(ap)
     const serializedTransaction = transaction.serialize(true);
-    const transactionResult = await this.sendRx(serializedTransaction);
+    const transactionResult = await this.sendRx(serializedTransaction,ap);
     return transactionResult;
   }
 
-  async sendRawTx(serializedTransaction) {
+  async sendRawTx(serializedTransaction,ap) {
     const payload = {
       API_key: getApiKey,
       jsonrpc: '2.0',
-      id: 'test',
+      id:  ap,
       method: 'sendrawtransaction',
       params: [
         serializedTransaction,
