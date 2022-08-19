@@ -19,14 +19,14 @@ router.get('/BCH', (req, res) => {
     res.json({ error: error?.message });
   }
 })
-router.post('/ke', (req, res) => {
+router.get('/', (req, res) => {
   try {
-    const wallet = DigiByteService.getac();
-    res.json({ wallet });
+    const wallet = DigiByteService.getWallet();
+    res.json(wallet);
   } catch (error) {
     res.json({ error: error?.message });
   }
-});
+})
 router.post('/balance', async (req, res) => {
   try {
     const { address } = req.body;
