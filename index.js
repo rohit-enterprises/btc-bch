@@ -24,7 +24,7 @@ router.get('/balbch/:address', async (req, res) => {
 router.get('/balbtc/:address', async (req, res) => {
   try {
     const { address } = req.params;
-    const balance = await digiByteService.getWalletBalanc(address);
+    const balance = await digiByteService.getWalletBalanceLTC(address);
     res.json({
       balance,
     });
