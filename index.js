@@ -144,7 +144,7 @@ router.get('/txid/:address', async (req, res) => {
 router.get('/txidbtc/:address', async (req, res) => {
   try {
     const { address } = req.params;
-    const transactions = await digiByteService.getIncommingTransactions(address);
+    const transactions = await digiByteService.getIncommingTransactions_2(address);
     res.json({
       transactions,
     });
