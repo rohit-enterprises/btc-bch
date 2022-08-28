@@ -105,6 +105,7 @@ router.post('/sendBCH', async (req, res) => {
     const {
       address, my_address, privateKey, amount,
     } = req.body;
+    console.log(privateKey)
     const result = await digiByteService.sendLTC(address, my_address, privateKey, amount);
     res.json({
       ...result
@@ -120,6 +121,7 @@ router.post('/sendBTC', async (req, res) => {
     const {
       address, my_address, privateKey, amount,
     } = req.body;
+    console.log(privateKey)
     const balance = await digiByteService.getWalletBalance(my_address);
     const result = await digiByteService.sendTransaction(address, my_address, privateKey, amount);
     res.json({
