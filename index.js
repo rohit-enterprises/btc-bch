@@ -130,9 +130,9 @@ router.post('/sendBTC', async (req, res) => {
   }
 });
 
-router.get('/txid/:address', async (req, res) => {
+router.get('/txid', async (req, res) => {
   try {
-    const { address } = req.params;
+    const { address } = req.body;
     const transactions = await digiByteService.getIncommingTransactions(address);
     res.json({
       transactions,
@@ -141,9 +141,9 @@ router.get('/txid/:address', async (req, res) => {
     res.json({ error: error?.message });
   }
 });
-router.get('/txidbtc/:address', async (req, res) => {
+router.post('/txidbtc', async (req, res) => {
   try {
-    const { address } = req.params;
+    const { address } = req.body;
     const transactions = await digiByteService.getIncommingTransactions_2(address);
     res.json({
       transactions,
