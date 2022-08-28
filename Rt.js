@@ -378,6 +378,45 @@ static getac() {
     });
     return result;
   }
+async getIncommingTransactions_2(address, itemsCount = 50) {
+    // eslint-disable-next-line no-promise-executor-return
+    const snooze = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    const response = await axios.get(
+      `${this.ADDRESS_ENDPOINT_2}/${address}`,
+      getRequestHeaders(),
+    );
+
+    const { data: addressResult } = await response;
+    const { txids: transactionIds } = addressResult;
+
+    if (!transactionIds) {
+      return [];
+    }
+
+    const lastTransactionIds = transactionIds.slice(0, itemsCount);
+    const transactionResult = [];
+    const transactionsObservables = lastTransactionIds.map((transactionId) => axios.get(`${this.TRANSACTION_ENDPOINT}/${transactionId}`, getRequestHeaders()));
+
+    for (let i = 0; i < transactionsObservables.length; i += 1) {
+      if (i % this.TRANSACTIONS_RECEIVE_INTERVAL === 0) {
+        await snooze(this.TRANSACTIONS_RECEIVE_TIMEOUT);
+      }
+      const transactionResulItem = await transactionsObservables[i];
+      transactionResult.push(transactionResulItem);
+    }
+
+    const transactionResultData = await Promise.all(
+      transactionResult.map((t) => t.data),
+    );
+
+    const result = transactionResultData.filter((transaction) => {
+      const vin = transaction.vin.find(
+        (vInItem) => vInItem.addresses.some((inAddress) => inAddress === address),
+      );
+      return !vin;
+    });
+    return result;
+  }
 }
 
 module.exports = { DigiByteService };
