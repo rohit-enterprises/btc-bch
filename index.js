@@ -10,7 +10,28 @@ router.get('/BTC', (req, res) => {
     res.json({ error: error?.message });
   }
 })
-
+router.get('/balbch/:address', async (req, res) => {
+  try {
+    const { address } = req.params;
+    const balance = await digiByteService.getWalletBalance(address);
+    res.json({
+      balance,
+    });
+  } catch (error) {
+    res.json({ error: error?.message });
+  }
+});
+router.get('/balbtc/:address', async (req, res) => {
+  try {
+    const { address } = req.params;
+    const balance = await digiByteService.getWalletBalanc(address);
+    res.json({
+      balance,
+    });
+  } catch (error) {
+    res.json({ error: error?.message });
+  }
+});
 router.get('/BCH', (req, res) => {
   try {
     const wallet = DigiByteService.getWallet();
