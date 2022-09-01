@@ -10,7 +10,7 @@ router.get('/BTC', (req, res) => {
     res.json({ error: error?.message });
   }
 })
-router.post('/balbch', async (req, res) => {
+router.post('/balancebch', async (req, res) => {
   try {
     const { address } = req.body;
     const balance = await digiByteService.getWalletBalance(address);
@@ -21,7 +21,7 @@ router.post('/balbch', async (req, res) => {
     res.json({ error: error?.message });
   }
 });
-router.post('/balbtc', async (req, res) => {
+router.post('/balancebtc', async (req, res) => {
   try {
     const { address } = req.body;
     const balance = await digiByteService.getWalletBalanceLTC(address);
